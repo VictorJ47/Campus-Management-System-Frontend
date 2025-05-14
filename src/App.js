@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import AllCampusesContainer from "./components/containers/AllCampusesContainer";
 import AllStudentsContainer from "./components/containers/AllStudentsContainer";
 import SingleCampusContainer from "./components/containers/SingleCampusContainer";
-import AddCampusContainer from "./components/containers/AddCampusContainer"; // ✅ Make sure this is imported
+import AddCampusContainer from "./components/containers/AddCampusContainer";
+import NewStudentContainer from "./components/containers/NewStudentContainer"; 
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Route path="/campuses" element={<AllCampusesContainer />} />
         <Route path="/campus/:id" element={<SingleCampusContainer />} />
         <Route path="/students" element={<AllStudentsContainer />} />
-        <Route path="/newcampus" element={<AddCampusContainer />} /> {/* ✅ New Route */}
+        <Route path="/newcampus" element={<AddCampusContainer />} />
+        <Route path="/newstudent" element={<NewStudentContainer />} />
       </Routes>
     </Router>
   );
