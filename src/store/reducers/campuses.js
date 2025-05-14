@@ -15,6 +15,10 @@ const allCampuses = (state = [], action) => {
 
     case at.ADD_CAMPUS:
       return [...state, action.payload]; // Add new campus to the list
+      
+    case DELETE_CAMPUS:
+      return state.filter(campus => campus.id !== action.payload);
+      
 
     default:
       return state;

@@ -55,3 +55,4 @@ export const fetchStudent = (student) => ({
   type: at.FETCH_STUDENT,
   payload: student,
 });
+
