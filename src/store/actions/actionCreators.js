@@ -1,68 +1,57 @@
 import * as at from './actionTypes';
 
-// ACTION CREATORS;
-/** needs to be an action creator
- * for each action type
- */
+// ACTION CREATORS
 
 // All Campuses
-export const fetchAllCampuses = (campuses) => {
-  return {
-    type: at.FETCH_ALL_CAMPUSES,
-    payload: campuses,
-  };
-};
+export const fetchAllCampuses = (campuses) => ({
+  type: at.FETCH_ALL_CAMPUSES,
+  payload: campuses,
+});
 
-//Single Campus
-export const fetchCampus = (campus) => {
-  return {
-    type: at.FETCH_CAMPUS,
-    payload: campus,
-  };
-};
+export const addCampus = (campus) => ({
+  type: at.ADD_CAMPUS,
+  payload: campus,
+});
 
-export const addCampus = (campus) => {
-  return {
-    type: at.ADD_CAMPUS,
-    payload: campus,
-  };
-};
+export const deleteCampus = (campusId) => ({
+  type: at.DELETE_CAMPUS,
+  payload: campusId,
+});
 
+// Single Campus
+export const fetchCampus = (campus) => ({
+  type: at.FETCH_CAMPUS,
+  payload: campus,
+});
 
-//All Students
-export const fetchAllStudents = (students) => {
-  return {
-    type: at.FETCH_ALL_STUDENTS,
-    payload: students,
-  };
-};
+export const updateCampus = (campus) => ({
+  type: at.UPDATE_CAMPUS,
+  payload: campus,
+});
 
-export const addStudent = (student) => {
-  return {
-    type: at.ADD_STUDENT,
-    payload: student,
-  };
-};
+// All Students
+export const fetchAllStudents = (students) => ({
+  type: at.FETCH_ALL_STUDENTS,
+  payload: students,
+});
 
-export const deleteStudent = (studentId) => {
-  return {
-    type: at.DELETE_STUDENT,
-    payload: studentId,
-  };
-};
+export const addStudent = (student) => ({
+  type: at.ADD_STUDENT,
+  payload: student,
+});
 
+export const deleteStudent = (studentId) => ({
+  type: at.DELETE_STUDENT,
+  payload: studentId,
+});
 
-export const editStudent = (student) => {
-  return {
-    type: at.EDIT_STUDENT,
-    payload: student,
-  };
-};
+export const editStudent = (student) => ({
+  type: at.EDIT_STUDENT,
+  payload: student,
+});
 
-//Single Student
-export const fetchStudent = (student) => {
-  return {
-    type: at.FETCH_STUDENT,
-    payload: student,
-  };
-};
+// Single Student
+export const fetchStudent = (student) => ({
+  type: at.FETCH_STUDENT,
+  payload: student,
+});
