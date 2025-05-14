@@ -1,14 +1,14 @@
 /*==================================================
 AllCampusesView.js
 
-The Views component is responsible for rendering web page with data provided by the corresponding Container component.
+The Views component is responsible for rendering the web page with data provided by the corresponding Container component.
 It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const AllCampusesView = (props) => {
-  // If there is no campus, display a message.
+  // If there are no campuses, display a message.
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
@@ -23,17 +23,26 @@ const AllCampusesView = (props) => {
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
-          <h4>campus id: {campus.id}</h4>
+          
+          {/* Add Image */}
+          <img
+            src={campus.imageUrl || "https://via.placeholder.com/150"}  // Default image if no imageUrl
+            alt={campus.name}
+            style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px' }}
+          />
+          
+          <h4>Campus ID: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
-          <hr/>
+          <hr />
         </div>
       ))}
-      <br/>
-      <Link to={`/`}>
+
+      <br />
+      <Link to={`/newcampus`}>
         <button>Add New Campus</button>
       </Link>
-      <br/><br/>
+      <br /><br />
     </div>
   );
 };
