@@ -63,7 +63,7 @@ export const addStudentThunk = (student) => async (dispatch) => {
   try {
     const res = await axios.post('/api/students', student);
     dispatch(ac.addStudent(res.data));
-    return res.data;
+    return res.data;  
   } catch (err) {
     console.error(err);
   }
