@@ -1,8 +1,5 @@
 import * as at from "./actionTypes";
 
-
-
-
 // ACTION CREATORS
 
 // All Campuses

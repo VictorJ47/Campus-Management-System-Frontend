@@ -1,10 +1,22 @@
+/*==================================================
+EditCampusView.js
+
+This view component renders a form for editing an existing campus.
+It displays current campus values and allows updates to name, address,
+and description fields.
+
+Props:
+- campus: An object containing campus data to edit (name, address, description)
+- handleChange: Function to update form field values
+- handleSubmit: Function to submit the edited campus data
+==================================================*/
 
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Styling
+// Create custom styles using Material-UI
 const useStyles = makeStyles(() => ({
   formContainer: {
     width: '500px',
@@ -21,8 +33,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const EditCampusView = (props) => {
-  const { campus, handleChange, handleSubmit } = props;
+const EditCampusView = ({ campus, handleChange, handleSubmit }) => {
   const classes = useStyles();
 
   return (
@@ -31,12 +42,19 @@ const EditCampusView = (props) => {
 
       <div className={classes.formContainer}>
         <div className={classes.formTitle}>
-          <Typography style={{ fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e' }}>
+          <Typography
+            style={{
+              fontWeight: 'bold',
+              fontFamily: 'Courier, sans-serif',
+              fontSize: '20px',
+              color: '#11153e',
+            }}
+          >
             Edit Campus Information
           </Typography>
         </div>
 
-        <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
+        <form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>Name: </label>
           <input
             type="text"
@@ -76,3 +94,4 @@ const EditCampusView = (props) => {
 };
 
 export default EditCampusView;
+

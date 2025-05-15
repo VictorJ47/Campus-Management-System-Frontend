@@ -1,3 +1,17 @@
+/*==================================================
+EditStudentView.js
+
+This view component renders a form for editing an existing student.
+It allows users to update the student's first name, last name, email, 
+and associated campus via a dropdown menu.
+
+Props:
+- student: Object containing current values of the student being edited
+- campuses: Array of all campus options to display in the dropdown
+- handleChange: Function to handle form field changes
+- handleSubmit: Function to submit updated student data
+==================================================*/
+
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -111,5 +125,6 @@ const EditStudentView = ({ student, campuses, handleChange, handleSubmit }) => {
 };
 
 export default EditStudentView;
+
 
 

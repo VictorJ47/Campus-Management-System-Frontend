@@ -1,3 +1,11 @@
+/*==================================================
+NewStudentContainer.js
+
+The Container component is responsible for stateful logic and data fetching, and
+passes data (if any) as props to the corresponding View component.
+If needed, it also defines the component's "connect" function.
+================================================== */
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addStudentThunk, fetchAllCampusesThunk } from "../../store/thunks";
@@ -13,20 +21,23 @@ class NewStudentContainer extends Component {
       email: "",
       campusId: "",
       redirect: false,
-      redirectId: null,
+      redirectId: null,  // ID of the newly created student
     };
   }
 
+  // Fetch campus list when component mounts
   componentDidMount() {
     this.props.fetchAllCampuses();
   }
 
+  // Update local state when form fields change
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
+  // Validate and submit form data
   handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -51,6 +62,8 @@ class NewStudentContainer extends Component {
       if (!newStudent || !newStudent.id) {
         throw new Error("No student returned from server");
       }
+
+      // Redirect to single student view
       this.setState({
         redirect: true,
         redirectId: newStudent.id,
@@ -80,13 +93,16 @@ class NewStudentContainer extends Component {
   }
 }
 
+// Get campus list from Redux state
 const mapState = (state) => ({
   allCampuses: state.allCampuses,
 });
 
+// Map thunks to props
 const mapDispatch = (dispatch) => ({
   addStudent: (student) => dispatch(addStudentThunk(student)),
   fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
 });
 
 export default connect(mapState, mapDispatch)(NewStudentContainer);
+
