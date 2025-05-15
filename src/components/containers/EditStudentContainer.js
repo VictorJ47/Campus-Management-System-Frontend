@@ -1,8 +1,7 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchStudentThunk, editStudentThunk } from '../../store/thunks';
+import { fetchStudentThunk, editStudentThunk, fetchAllCampusesThunk } from '../../store/thunks';
 import EditStudentView from '../views/EditStudentView';
-import Header from './Header';
 import { Redirect } from 'react-router-dom';
 
 class EditStudentContainer extends Component {
@@ -14,22 +13,24 @@ class EditStudentContainer extends Component {
       email: '',
       campusId: '',
       redirect: false,
+      loaded: false,
     };
   }
 
   async componentDidMount() {
     const { id } = this.props.match.params;
     await this.props.fetchStudent(id);
+    await this.props.fetchAllCampuses();
+
     const { student } = this.props;
 
-    if (student) {
-      this.setState({
-        firstName: student.firstName || '',
-        lastName: student.lastName || '',
-        email: student.email || '',
-        campusId: student.campusId || '',
-      });
-    }
+    this.setState({
+      firstName: student.firstName || '',
+      lastName: student.lastName || '',
+      email: student.email || '',
+      campusId: student.campusId ? String(student.campusId) : '',
+      loaded: true,
+    });
   }
 
   handleChange = (event) => {
@@ -58,34 +59,28 @@ class EditStudentContainer extends Component {
       return <Redirect to={`/student/${this.props.match.params.id}`} />;
     }
 
-    const student = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      campusId: this.state.campusId,
-    };
+    if (!this.state.loaded) return <div>Loading...</div>;
 
     return (
-      <div>
-        <Header />
-        <EditStudentView
-          student={student}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
-      </div>
+      <EditStudentView
+        student={this.state}
+        campuses={this.props.allCampuses}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+      />
     );
   }
 }
 
 const mapState = (state) => ({
   student: state.student,
+  allCampuses: state.allCampuses,
 });
 
 const mapDispatch = (dispatch) => ({
   fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
   editStudent: (student) => dispatch(editStudentThunk(student)),
+  fetchAllCampuses: () => dispatch(fetchAllCampusesThunk()),
 });
 
 export default connect(mapState, mapDispatch)(EditStudentContainer);
-
