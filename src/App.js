@@ -1,30 +1,34 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Header from "./components/containers/Header";
+
 import AllCampusesContainer from "./components/containers/AllCampusesContainer";
 import AllStudentsContainer from "./components/containers/AllStudentsContainer";
-import SingleCampusContainer from "./components/containers/SingleCampusContainer";
+import CampusContainer from "./components/containers/CampusContainer";
+import StudentContainer from "./components/containers/StudentContainer";
+import NewStudentContainer from "./components/containers/NewStudentContainer";
 import AddCampusContainer from "./components/containers/AddCampusContainer";
-import NewStudentContainer from "./components/containers/NewStudentContainer"; 
-import EditStudentContainer from "./components/containers/EditStudentContainer"; 
+import HomePageView from "./components/views/HomePageView";
 
 function App() {
   return (
     <Router>
-      <Header />
+      <Header /> {/* Renders once on every page */}
       <Switch>
-        <Route exact path="/" component={AllCampusesContainer} />
-        <Route path="/campuses" component={AllCampusesContainer} />
-        <Route path="/campus/:id" component={SingleCampusContainer} />
-        <Route path="/students" component={AllStudentsContainer} />
-        <Route path="/newcampus" component={AddCampusContainer} />
-        <Route path="/newstudent" component={NewStudentContainer} />
-        <Route path="/editstudent/:id" component={EditStudentContainer} /> 
+        <Route exact path="/" component={HomePageView} />
+        <Route exact path="/campuses" component={AllCampusesContainer} />
+        <Route exact path="/students" component={AllStudentsContainer} />
+        <Route exact path="/campus/:id" component={CampusContainer} />
+        <Route exact path="/student/:id" component={StudentContainer} />
+        <Route exact path="/newstudent" component={NewStudentContainer} />
+        <Route exact path="/newcampus" component={AddCampusContainer} />
       </Switch>
     </Router>
   );
 }
 
 export default App;
+
 
 

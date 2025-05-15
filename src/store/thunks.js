@@ -3,7 +3,7 @@
 
 It contains all Thunk Creators and Thunks.
 ================================================== */
-import * as ac from './actionCreators';
+import * as ac from "./actions/actionCreators";
 const axios = require('axios');
 
 // All Campuses

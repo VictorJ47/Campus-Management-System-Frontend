@@ -6,6 +6,8 @@ Depending on the Action object, the Reducer updates the State and return the new
 It also defines the State and its default initial value.
 ================================================== */
 import * as at from "../actions/actionTypes";  // Import Action Types
+import { DELETE_CAMPUS } from "../actions/actionTypes";
+
 
 // REDUCER:
 const allCampuses = (state = [], action) => {
