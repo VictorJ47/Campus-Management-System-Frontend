@@ -29,10 +29,18 @@ const StudentView = ({ student }) => {
         alt={`${student.firstName} ${student.lastName}`}
         style={{ width: "200px", borderRadius: "10px", marginTop: "15px" }}
       />
+
+      {/* ✅ Edit Button */}
+      <div style={{ marginTop: "20px" }}>
+        <Link to={`/editstudent/${student.id}`}>
+          <button>Edit Student</button>
+        </Link>
+      </div>
     </div>
   );
 };
 
 export default StudentView;
+
 
 

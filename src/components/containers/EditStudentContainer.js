@@ -1,4 +1,3 @@
-
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStudentThunk, editStudentThunk } from '../../store/thunks';
@@ -10,22 +9,27 @@ class EditStudentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
-      campusId: null,
+      firstName: '',
+      lastName: '',
+      email: '',
+      campusId: '',
       redirect: false,
     };
   }
 
   async componentDidMount() {
     const { id } = this.props.match.params;
-    const student = await this.props.fetchStudent(id);
+    await this.props.fetchStudent(id);
+    const { student } = this.props;
 
-    this.setState({
-      firstname: student.firstname || '',
-      lastname: student.lastname || '',
-      campusId: student.campusId || null,
-    });
+    if (student) {
+      this.setState({
+        firstName: student.firstName || '',
+        lastName: student.lastName || '',
+        email: student.email || '',
+        campusId: student.campusId || '',
+      });
+    }
   }
 
   handleChange = (event) => {
@@ -39,9 +43,10 @@ class EditStudentContainer extends Component {
 
     const updatedStudent = {
       id: this.props.match.params.id,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      campusId: this.state.campusId,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      campusId: this.state.campusId ? Number(this.state.campusId) : null,
     };
 
     await this.props.editStudent(updatedStudent);
@@ -54,8 +59,9 @@ class EditStudentContainer extends Component {
     }
 
     const student = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
       campusId: this.state.campusId,
     };
 
@@ -82,3 +88,4 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(EditStudentContainer);
+

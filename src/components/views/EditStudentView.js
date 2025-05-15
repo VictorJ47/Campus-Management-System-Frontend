@@ -1,10 +1,8 @@
-
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Create styling for the input form
 const useStyles = makeStyles(() => ({
   formContainer: {
     width: '500px',
@@ -21,8 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const EditStudentView = (props) => {
-  const { student, handleChange, handleSubmit } = props;
+const EditStudentView = ({ student, handleChange, handleSubmit }) => {
   const classes = useStyles();
 
   return (
@@ -36,22 +33,34 @@ const EditStudentView = (props) => {
           </Typography>
         </div>
 
-        <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
+        <form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>First Name: </label>
           <input
             type="text"
-            name="firstname"
-            value={student.firstname || ""}
-            onChange={(e) => handleChange(e)}
+            name="firstName"
+            value={student.firstName}
+            onChange={handleChange}
+            required
           />
           <br /><br />
 
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>Last Name: </label>
           <input
             type="text"
-            name="lastname"
-            value={student.lastname || ""}
-            onChange={(e) => handleChange(e)}
+            name="lastName"
+            value={student.lastName}
+            onChange={handleChange}
+            required
+          />
+          <br /><br />
+
+          <label style={{ color: '#11153e', fontWeight: 'bold' }}>Email: </label>
+          <input
+            type="email"
+            name="email"
+            value={student.email}
+            onChange={handleChange}
+            required
           />
           <br /><br />
 
@@ -59,8 +68,8 @@ const EditStudentView = (props) => {
           <input
             type="text"
             name="campusId"
-            value={student.campusId || ""}
-            onChange={(e) => handleChange(e)}
+            value={student.campusId || ''}
+            onChange={handleChange}
           />
           <br /><br />
 
@@ -75,3 +84,4 @@ const EditStudentView = (props) => {
 };
 
 export default EditStudentView;
+

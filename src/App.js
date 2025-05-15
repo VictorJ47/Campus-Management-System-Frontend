@@ -1,3 +1,5 @@
+// src/App.js
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -9,6 +11,8 @@ import CampusContainer from "./components/containers/CampusContainer";
 import StudentContainer from "./components/containers/StudentContainer";
 import NewStudentContainer from "./components/containers/NewStudentContainer";
 import AddCampusContainer from "./components/containers/AddCampusContainer";
+import EditStudentContainer from "./components/containers/EditStudentContainer";
+import EditCampusContainer from "./components/containers/EditCampusContainer";
 import HomePageView from "./components/views/HomePageView";
 
 function App() {
@@ -23,12 +27,15 @@ function App() {
         <Route exact path="/student/:id" component={StudentContainer} />
         <Route exact path="/newstudent" component={NewStudentContainer} />
         <Route exact path="/newcampus" component={AddCampusContainer} />
+        <Route exact path="/editstudent/:id" component={EditStudentContainer} />
+        <Route exact path="/editcampus/:id" component={EditCampusContainer} />
       </Switch>
     </Router>
   );
 }
 
 export default App;
+
 
 
 

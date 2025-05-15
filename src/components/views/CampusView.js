@@ -6,22 +6,29 @@ It constructs a React component to display a single campus and its students (if 
 ================================================== */
 import { Link } from "react-router-dom";
 
-// Take in props data to construct the component
-const CampusView = (props) => {
-  const { campus } = props;
+const CampusView = ({ campus }) => {
+  if (!campus || !campus.id) {
+    return <div>Loading campus details...</div>;
+  }
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h1>{campus.name}</h1>
-      <p>{campus.address}</p>
-      <p>{campus.description}</p>
-      {campus.students && campus.students.length > 0 ? (
+      <p><strong>Address:</strong> {campus.address}</p>
+      <p><strong>Description:</strong> {campus.description}</p>
+
+      <Link to={`/editcampus/${campus.id}`}>
+        <button>Edit Campus</button>
+      </Link>
+
+      <h2>Enrolled Students</h2>
+      {campus.students && campus.students.length ? (
         campus.students.map((student) => {
-          let name = student.firstName + " " + student.lastName;
+          const name = `${student.firstName} ${student.lastName}`;
           return (
             <div key={student.id}>
               <Link to={`/student/${student.id}`}>
-                <h2>{name}</h2>
+                <p>{name}</p>
               </Link>
             </div>
           );
@@ -34,3 +41,5 @@ const CampusView = (props) => {
 };
 
 export default CampusView;
+
+
